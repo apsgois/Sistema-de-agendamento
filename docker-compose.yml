@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: ./backend/myclinic
+      dockerfile: Dockerfile
+    container_name: myclinic_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend/myclinic:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB=myclinic
+      - POSTGRES_USER=myclinicuser
+      - POSTGRES_PASSWORD=myclinicpassword
+
+  db:
+    image: postgres:13
+    container_name: myclinic_db
+    environment:
+      POSTGRES_DB: myclinic
+      POSTGRES_USER: myclinicuser
+      POSTGRES_PASSWORD: myclinicpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
