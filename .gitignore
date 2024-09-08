@@ -84,3 +84,13 @@ docker-compose.override.yml
 *.orig
 *.DS_Store
 Thumbs.db
+
+# Quasar stuff:
+node_modules/
+dist/
+*.log
+*.tmp
+*.swp
+*.bak
+*.orig
+*.DS_Store

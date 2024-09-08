@@ -28,5 +28,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  quasar:
+    build:
+      context: ./frontend/quasar-project
+      dockerfile: Dockerfile
+    container_name: quasar_project
+    ports:
+      - "8080:8080"
+    depends_on:
+      - web
+
 volumes:
   postgres_data:
